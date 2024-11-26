@@ -1,0 +1,45 @@
+{% extends "traffic/base.html" %}
+
+{% block title %}expiry details{% endblock title %}
+
+{% block content %}
+ <h1>Expiry Details</h1>
+<form method="GET" action="{% url 'expiry_details' %}">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+
+    <label for="nid">National ID:</label>
+    <input type="text" id="nid" name="nid" required>
+
+    <button type="submit">Search</button>
+</form>
+<hr>
+<div class="row">
+    <div class="col-sm-8">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Licence Number</th>
+                    <th scope="col">Expiry Date</th>
+                </tr>
+                {% for expiry in expiry_details %}
+            <tr>
+                <td>{{ expiry.licence_number.licence_number }}</td>
+                <td>{{ expiry.expiry_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No expiry details found for the given DOB and NID.</td>
+            </tr>
+            {% endfor %}
+            </thead>
+            
+            </table>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+

@@ -1,0 +1,46 @@
+{% extends "traffic/base.html" %}
+
+{% block title %}contact us{% endblock title %}
+
+{% block content %}
+<h1>Contact Us</h1>
+{% comment %} {% if success %}
+<p style="color: green;">Your message has been sent successfully!</p>
+{% endif %} {% endcomment %}
+{% comment %} <form method="POST">
+    {% csrf_token %}
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required><br><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">Send Message</button>
+</form> {% endcomment %}
+
+{% if success %}
+<p style="color: green;">Your message has been sent successfully.</p>
+{% elif error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Name:</label>
+    <input type="text" name="name" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <label>Phone:</label>
+    <input type="text" name="phone">
+    <label>Message:</label>
+    <textarea name="message" required></textarea>
+    <button type="submit">Send</button>
+</form>
+
+{% endblock content %}

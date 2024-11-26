@@ -1,0 +1,25 @@
+{% extends "traffic/base.html" %}
+{% block title %}licence details{% endblock title %}
+
+{% block content %}
+<h1>Owner Details</h1>
+    <p>Name: {{ owner.name }}</p>
+    <p>Age: {{ owner.age }}</p>
+    <p>DOB: {{ owner.dob }}</p>
+    <p>NID: {{ owner.nid }}</p>
+    <p>Present Address: {{ owner.present_address }}</p>
+    <p>Permanent Address: {{ owner.permanent_address }}</p>
+    <p>Phone Number: {{ owner.phone_number }}</p>
+    <p>Email: {{ owner.email }}</p>
+    <p>Licence Number: {{ owner.licence_number }}</p>
+
+    <h1>Fine Details</h1>
+    {% for fine in fine_details %}
+        <p>Violation Type: {{ fine.violation_type }}</p>
+        <p>Violation Time: {{ fine.violation_time }}</p>
+        <p>Violation Location: {{ fine.violation_location }}</p>
+    {% endfor %}
+
+    <h1>Expiry Details</h1>
+    <p>Expiry Date: {{ expiry_details.expiry_date }}</p>
+{% endblock content %}

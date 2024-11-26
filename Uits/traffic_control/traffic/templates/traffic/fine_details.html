@@ -1,0 +1,81 @@
+{% extends "traffic/base.html" %}
+{% block title %}fine details{% endblock title %}
+
+{% block content %}
+
+<div >
+    <h1>Fine Details</h1>
+    {% if message %}
+    <p style="color: red;">{{ message }}</p>
+    {% endif %}
+    
+    <table>
+        <tr>
+            <th>Licence Number</th>
+            <th>Other Fields...</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.licence_number }}</td>
+            <td><tr>
+                <td>{{ fine.licence_number.licence_number }}</td>
+                <td>{{ fine.violation_type }}</td>
+                <td>{{ fine.violation_time }}</td>
+                <td>{{ fine.violation_location }}</td>
+            </tr></td>
+        </tr>
+        {% empty %}
+      
+        {% endfor %}
+    
+     <!-- Search Form -->
+        <form method="GET" action="{% url 'fine_details' %}">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+    
+            <label for="nid">National ID:</label>
+            <input type="text" id="nid" name="nid" required>
+    
+            <button type="submit">Search</button>
+        </form>
+    <hr>
+    <div class="row">
+        <div class="col-sm-8">
+        </table>
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Se.No</th>
+                    <th scope="col">Licence Number</th>
+                    <th scope="col">Violation Type</th>
+                    <th scope="col">Violation Time</th>
+                    <th scope="col">Violation Location</th>
+                </tr>
+            </thead>
+            <tbody>
+             
+              {% for fine in fine_details %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ fine.licence_number.licence_number }}</td>
+                    <td>{{ fine.violation_type }}</td>
+                    <td>{{ fine.violation_time }}</td>
+                    <td>{{ fine.violation_location }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No fines found for the given DOB and NID.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+    
+</div>
+
+
+
+{% endblock content %}
+    
+
